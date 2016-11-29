@@ -1,0 +1,6 @@
+<div *ngIf='video'>
+     <video id="backgroundvid"  onended='goBack()' controls>
+        <source src="{{video.path}}" type="video/mp4">
+        <p>Fallback content to cover incompatibility issues</p>
+    </video>
+</div>
