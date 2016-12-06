@@ -4,15 +4,12 @@ import {Router, ActivatedRoute} from '@angular/router'
 import {Subscription} from 'rxjs/Subscription'
 
 import {IVideo} from './video'
-import {VideoService} from './video.service'      
+import {VideoService} from './video.service'  
+
+import {HistoryService} from './history.service'    
 
 @Component({
-    template:`<div *ngIf='video'>
-     <video id="backgroundvid"  onended='goBack($event)' controls>
-        <source src="{{video.path}}" type="video/mp4">
-        <p>Fallback content to cover incompatibility issues</p>
-    </video>
-</div>`,
+    templateUrl: 'app/video-list/video-details.component.html'
 })
 
 export class VideoDetailComponent implements OnInit, OnDestroy{
@@ -22,7 +19,9 @@ export class VideoDetailComponent implements OnInit, OnDestroy{
 
     constructor(private _route: ActivatedRoute,
                 private _router: Router,
-                private _videoService: VideoService){
+                private _videoService: VideoService,
+                private _historyService: HistoryService
+                ){
 
     }
 
@@ -33,6 +32,7 @@ export class VideoDetailComponent implements OnInit, OnDestroy{
                 this.getVideo(id);
             }
         )
+        
     }
 
     ngOnDestroy(){
@@ -45,9 +45,17 @@ export class VideoDetailComponent implements OnInit, OnDestroy{
             error => this.errorMessage = <any>error
         );
     }
-
-    goBack(event: Event): void {
-        console.log('called');
-        this._router.navigate(['/videos']);
+    public onVideoPlay(){
+        console.log('hi');
+    var history ={
+            "userid":1,
+            "id": this.video.id,
+            "title": this.video.title,
+            "path": this.video.path,
+            "cover": this.video.cover
+        }
+        this._historyService.save(history);
     }
+
+    
 }

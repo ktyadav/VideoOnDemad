@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {VideoService} from './video-list/video.service';
+import {HistoryService} from './video-list/history.service'  
 
 @Component({
     selector: 'my-app',
@@ -18,7 +19,7 @@ import {VideoService} from './video-list/video.service';
         </div>
      </div>
     `,
-    providers: [VideoService]
+    providers: [VideoService,HistoryService]
 })
 export class AppComponent { 
     pageTitle: string = "Hello";

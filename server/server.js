@@ -1,20 +1,39 @@
-const express = require('express');
+var express = require('express')
 
-const app = express();
+var app = express();
 
-const bodyParser = require('body-parser');
+var mongoClient=require('mongodb').MongoClient;
+var mongoDbObj;
 
-app.use(bodyParser.urlencoded({extended: true}));
+mongoClient.connect('mongodb://localhost/videoDb', function(err, db){
+  if(err){
+    console.log(err);
+  }
+  else{
+    console.log("Connected to MongoDB");
+    app.listen(8081, ()=>{
+        console.log('server is running on 8081');
+    })
+      mongoDbObj={db: db,
+      videoHistory: db.collection('videoHistory')
+    };
+  }
+});
 
-var mongoose = require('mongoose');
+app.post("save", function(req, res){
+  var history = req.body;
+  mongoDbObj.videoHistory.insert(history, function(err, result){
+    if(err)
+    {
+      console.log('error occurs');
+    } else{
+      console.log('saved success');
+    }
 
-var Schema = mongoose.Schema;
+  })
+});
 
-mongoose.connect('mongodb://ktyadav:kt%406233@ds159377.mlab.com:59377/complain-me');
-
-var userHistory = new Schema({
-    userid: number,
-    videoid: number
+app.get("/history/:userId", function(req, res){
+  var id = req.params.userId;
+  
 })
-
-var User = mongoose.model('User', userHistory);
