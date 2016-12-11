@@ -33,6 +33,12 @@ node server.js --  {http://localhost:9090}
 ```bash
 npm start --  {http://localhost:30000}
 ```
+
+>>>
+User Id is hard coded in two files, If in case need to change the user then change in below two files
+* video-details.component.ts under app/videos
+* history.component.ts under app/history 
+>>>
 The `npm start` command first compiles the application, 
 then simultaneously re-compiles and runs the `lite-server`.
 Both the compiler and the server watch for file changes.
