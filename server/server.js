@@ -1,39 +1,57 @@
-var express = require('express')
+var express = require('express');
 
 var app = express();
 
-var mongoClient=require('mongodb').MongoClient;
-var mongoDbObj;
+var bodyParser = require('body-parser');
 
-mongoClient.connect('mongodb://localhost/videoDb', function(err, db){
-  if(err){
-    console.log(err);
-  }
-  else{
-    console.log("Connected to MongoDB");
-    app.listen(8081, ()=>{
-        console.log('server is running on 8081');
-    })
-      mongoDbObj={db: db,
-      videoHistory: db.collection('videoHistory')
-    };
-  }
+app.use(bodyParser.json());
+
+app.use(bodyParser.urlencoded({extended: true}));
+
+var MongoClient = require('mongodb').MongoClient
+
+var db
+
+MongoClient.connect('mongodb://ktyadav:kt%406233@ds159377.mlab.com:59377/complain-me', (err, database) => {
+	
+	if(err) return console.log(err)
+		
+	db = database
+	
+	app.listen(9090, function(){
+		console.log('listening on port 9090')
+	})	
+})
+
+// Add headers
+app.use(function (req, res, next) {
+
+    // Website you wish to allow to connect
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+
+     // Request headers you wish to allow
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+
+    // Pass to next layer of middleware
+    next();
 });
 
-app.post("save", function(req, res){
-  var history = req.body;
-  mongoDbObj.videoHistory.insert(history, function(err, result){
-    if(err)
-    {
-      console.log('error occurs');
-    } else{
-      console.log('saved success');
-    }
+app.post('/history', (req, res) => {
+  console.log(req.body);
+  db.collection('videoHistory').save(req.body, (err, result) => {
+	  if(err) console.log(err)
 
+	  console.log('data saved')
+	  res.end();
   })
-});
+})
 
-app.get("/history/:userId", function(req, res){
-  var id = req.params.userId;
-  
+app.get('/history/:id', (req, res) => {
+  var id = req.params.id;
+  db.collection('videoHistory').find({"userId":id}).toArray(function(err,results){
+    if(err) console.log(err);
+	   console.log(results);
+	   res.send(results);
+  })
+ 
 })

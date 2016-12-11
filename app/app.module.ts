@@ -5,9 +5,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 
 import { AppComponent }  from './app.component';
-import {VideoListComponent} from './video-list/video-list.component';
-import {VideoDetailComponent} from './video-list/video-details.component';
-import {WelcomeComponent} from './home/welcome.component';
+import {VideoListComponent} from './videos/video-list.component';
+import {VideoDetailComponent} from './videos/video-details.component';
 import {HistoryComponent} from './history/history.component';
 
 
