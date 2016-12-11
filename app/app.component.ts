@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {VideoService} from './videos/video.service';
-import {HistoryService} from './videos/history.service'  
+import {VideoService} from './common/video.service'
+import {HistoryService} from './common/history.service' 
 
 @Component({
     selector: 'my-app',
@@ -22,5 +22,4 @@ import {HistoryService} from './videos/history.service'
     providers: [VideoService,HistoryService]
 })
 export class AppComponent { 
-    pageTitle: string = "Hello";
 }

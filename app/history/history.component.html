@@ -1,9 +1,16 @@
 
 <div class="container">
     <div class="row" >
-        <div class="col-xs-4 col-sm-3 col-md-2" *ngFor="let video of videos">
-            <img class="cover" [src] = "video.cover" [title] = "video.title" />
-            <h4><a [routerLink]="['/video',video.id]" >{{video.title}}</a></h4>
+        <div class="col-xs-12 col-sm-12 col-md-12" >
+           <ul>
+               <li *ngFor="let video of videos">
+                  {{video.title}} 
+               </li>
+           </ul>
+            <div *ngIf="!(videos && videos.length > 0)">
+                <h3>No Video history!!!</h3>
+            </div>
         </div>
+        
     </div>
 </div>

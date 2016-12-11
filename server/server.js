@@ -55,3 +55,16 @@ app.get('/history/:id', (req, res) => {
   })
  
 })
+
+app.get('/history/:userId/:videoId', (req, res) => {
+  var userId = req.params.userId;
+  var videoId = req.params.videoId;
+  console.log("user id: "+userId);
+  console.log("video id"+videoId);
+  db.collection('videoHistory').find({$where:[{"userId":userId},{"videoId":videoId}]}).toArray(function(err,results){
+    if(err) console.log(err);
+	   console.log(results);
+	   res.send(results);
+  })
+ 
+})

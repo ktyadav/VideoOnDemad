@@ -24,7 +24,7 @@ const appRoutes: Routes = [
     HttpModule,
     RouterModule.forRoot(appRoutes)
      ],
-  declarations: [ AppComponent,VideoListComponent, VideoDetailComponent, HistoryComponent,WelcomeComponent],
+  declarations: [ AppComponent,VideoListComponent, VideoDetailComponent, HistoryComponent],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }

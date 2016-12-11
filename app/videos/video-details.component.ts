@@ -4,13 +4,13 @@ import {Http, Response, Headers} from '@angular/http'
 
 import {Subscription} from 'rxjs/Subscription'
 
-import {IVideo} from './video'
-import {VideoService} from './video.service'  
+import {IVideo} from '../common/video'
+import {VideoService} from '../common/video.service'  
 
-import {HistoryService} from './history.service'    
+import {HistoryService} from '../common/history.service'    
 
 @Component({
-    templateUrl: 'app/video-list/video-details.component.html',
+    templateUrl: 'app/videos/video-details.component.html',
     
 })
 
@@ -19,7 +19,7 @@ export class VideoDetailComponent implements OnInit, OnDestroy{
     errorMessage: string;
     private sub: Subscription;
     private serviceUrl = "http://localhost:9090/history";
-    private userId = 'User1';
+    private userId = 'user1';
 
     constructor(private _route: ActivatedRoute,
                 private _router: Router,
@@ -53,18 +53,13 @@ export class VideoDetailComponent implements OnInit, OnDestroy{
     onVideoPlay(event:any){
         var history = {
             userId:this.userId,
-            id: this.video.id,
+            videoId: this.video.videoId,
             title: this.video.title,
             path: this.video.path,
             cover: this.video.cover
 
         }
-        let body = JSON.stringify(history);
-        let headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        console.log(body);
-        this._http.post(this.serviceUrl,body,{headers: headers}).subscribe();
-        console.log("history saved");
+        this._historyService.saveHistory(history);
     }
 
     onVideoEnd(event:any){

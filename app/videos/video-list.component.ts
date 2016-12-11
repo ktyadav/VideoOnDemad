@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { IVideo } from './video';
-import { VideoService } from './video.service';
+import { IVideo } from '../common/video';
+import { VideoService } from '../common/video.service';
 
 @Component({
-    templateUrl: 'app/video-list/video-list.component.html',
+    templateUrl: 'app/videos/video-list.component.html',
     selector: "video-list"
 
 })

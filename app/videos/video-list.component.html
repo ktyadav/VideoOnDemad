@@ -3,7 +3,7 @@
     <div class="row" >
         <div class="col-xs-4 col-sm-3 col-md-2" *ngFor="let video of videos">
             <img class="cover" [src] = "video.cover" [title] = "video.title" />
-            <h4><a [routerLink]="['/video',video.id]" >{{video.title}}</a></h4>
+            <h4><a [routerLink]="['/video',video.videoId]" >{{video.title}}</a></h4>
         </div>
     </div>
 </div>

@@ -23,7 +23,7 @@ export class VideoService{
 
     getVideo(id:number): Observable<IVideo>{
         return this.getVideos()
-            .map((videos: IVideo[]) =>videos.find(v => v.id == id));
+            .map((videos: IVideo[]) =>videos.find(v => v.videoId == id));
     }
     private handleError(error: Response){
         console.log(error);
