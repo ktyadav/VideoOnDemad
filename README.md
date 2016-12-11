@@ -13,11 +13,11 @@ Node.js and npm are essential to start this project
 * MongoDb
 
 ## About Application
-> This application User Interface is depeloped in Angular 2 to show the video list, When user select any of the video then
-> 
-## How to Run
+> This application User Interface is depeloped in Angular 2 using TypeScript.
+> Rest API depeloped in NodeJs using Express.
+> MongoDB online mLab database used to store user history on server.
 
-> See npm and nvm version notes above
+## How to Run
 
 Install the npm packages described in the `package.json` and verify that it works:
 
