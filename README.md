@@ -2,6 +2,8 @@
 
 ## Prerequisites
 
+### Application Developed in Visual Studio Code 
+
 Node.js and npm are essential to start this project
 
 ## Technologies Used
@@ -11,10 +13,9 @@ Node.js and npm are essential to start this project
 * ExpressJs
 * Bootstrap
 * MongoDb
-### Visual Studio Code IDE used for Development
 
-----------------------------------------
 ## About Application
+
 ### This application User Interface is depeloped in Angular 2 using TypeScript.
 ### Rest API depeloped in NodeJs using Express.
 ### MongoDB online mLab database used to store user history on server.
