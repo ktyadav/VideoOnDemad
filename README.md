@@ -26,14 +26,17 @@ npm install
 ```
 ### Navigate to server Dir and start server by typing below command
 ```bash
-node server.js --  {http://localhost:9090}
+node server.js 
+
 ```
+# Node Api Url --  {http://localhost:9090}
+
 ### Now run application by typing below command
 
 ```bash
-npm start --  {http://localhost:30000}
+npm start --  {http://localhost:3000}
 ```
-
+# Application Url --  {http://localhost:3000}
 The `npm start` command first compiles the application, 
 then simultaneously re-compiles and runs the `lite-server`.
 Both the compiler and the server watch for file changes.
